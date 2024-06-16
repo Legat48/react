@@ -4,13 +4,13 @@ import { createRoot } from 'react-dom/client';
 
 const form = document.getElementById('add-description');
 const descriptionList = document.getElementById('description-list')
+const reactRoot  = createRoot(descriptionList);
 
 
 let termArr = [ {
   title: '1',
   id: crypto.randomUUID(),
-}
-]
+}]
 
 function syncTermList() {
   reactRoot.render(<TermList termArr={termArr} onDelete={deleteItem} />);
@@ -19,14 +19,13 @@ function syncTermList() {
 function addTerm(title, desc) {
   termArr.push({title, desc, id: crypto.randomUUID()})
   termArr.sort((a, b) => a.title.localeCompare(b.title))
-  syncTermList
+  syncTermList()
   }
 function deleteItem(id) {
   termArr = termArr.filter(item => item.id!== id)
-  syncTermList
+  syncTermList()
 }
-const reactRoot  = createRoot(descriptionList);
-syncTermList
+syncTermList()
 
 form.addEventListener('submit', (event) => {
   // Отменяем поведение по умолчанию
