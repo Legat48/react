@@ -7,13 +7,19 @@ const descriptionList = document.getElementById('description-list')
 const reactRoot  = createRoot(descriptionList);
 
 
-let termArr = [ {
-  title: '1',
-  id: crypto.randomUUID(),
-}]
-
+let termArr = []
+restoreTermList()
 function syncTermList() {
   reactRoot.render(<TermList termArr={termArr} onDelete={deleteItem} />);
+  saveTermList()
+}
+function restoreTermList() {
+  termArr = JSON.parse(localStorage.getItem('termArr')) || []
+  syncTermList()
+}
+
+function saveTermList() {
+  localStorage.setItem('termArr', JSON.stringify(termArr));
 }
 
 function addTerm(title, desc) {
@@ -25,7 +31,6 @@ function deleteItem(id) {
   termArr = termArr.filter(item => item.id!== id)
   syncTermList()
 }
-syncTermList()
 
 form.addEventListener('submit', (event) => {
   // Отменяем поведение по умолчанию
