@@ -1,0 +1,19 @@
+.term-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.term-list__item {
+  animation: apperance  0.5s ease-in-out;
+}
+
+@keyframes apperance {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
