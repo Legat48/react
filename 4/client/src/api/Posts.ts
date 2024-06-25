@@ -4,7 +4,7 @@ export const PostSchema = z.object({
   id: z.string(),
   text: z.string(),
   authorId: z.string(),
-  createdAt: z.string(),
+  createdAt: z.union([z.string(), z.number()]),
 })
 
 export type Post = z.infer<typeof PostSchema>;
@@ -51,11 +51,13 @@ export function usePostList() {
   useEffect(() => {
 
     if (state.status === 'pending') {
-      console.log('fetchPostList()', fetchPostList())
+      // console.log('fetchPostList()', fetchPostList())
       fetchPostList().then(data => {
         console.log('data1', data)
         setState({ status: 'success', data: data.list })})
         .catch((error) => {
+        console.log('data12', error)
+
           setState({ status: 'error', error })
         })
     }
