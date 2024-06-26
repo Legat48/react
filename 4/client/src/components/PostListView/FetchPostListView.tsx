@@ -1,17 +1,28 @@
-import { usePostList } from "../../api/Posts"
+import { useQuery} from "@tanstack/react-query"
+import { fetchPostList } from "../../api/Posts"
 import { Loader  }  from  "../Loader"
 import { PostListView } from "./PostListView"
+
+
 export const FetchPostListView = () => {
-  const { state, refetch } = usePostList()
-  switch (state.status) {
-    case "idle":
+
+  const postListQuery =  useQuery({
+    queryKey: ["posts"],
+    queryFn: () => fetchPostList()
+  }, )
+  console.log(postListQuery.status)
+  switch (postListQuery.status) {
     case "pending":
       return <Loader/>
+
     case "success":
-      return <PostListView postList={state.data}/>
+      return <PostListView postList={postListQuery.data.list}/>
+
     case "error":
-      return <div>Error
-        <button onClick={refetch}>Повторить</button>
+      return <div>
+        Error
+
+        <button onClick={() => postListQuery.refetch()}>Повторить</button>
       </div>
 
   }

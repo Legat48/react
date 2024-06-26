@@ -9,7 +9,7 @@ import { sleep } from './sleep.js';
 const server = express();
 
 server.listen(4000, () => {
-  console.log('Server started on port 4000');
+  console.info('Server started on port 4000');
 });
 
 server.use(json(), cookieParser(), cors(), sleep([400, 1500]));

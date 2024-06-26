@@ -1,5 +1,8 @@
 import { z } from "zod";
 import { useState, useEffect } from "react";
+import { validateResponse } from "./validateResponse";
+
+
 export const PostSchema = z.object({
   id: z.string(),
   text: z.string(),
@@ -31,7 +34,7 @@ interface IdleRequestState {
 }
 
 interface LoadingRequestState {
-  status: 'pending'
+  status: 'loading'
 }
 
 interface SuccessRequestState {
@@ -50,25 +53,34 @@ export function usePostList() {
   const [state, setState] = useState<RequestState>({ status: 'idle' })
   useEffect(() => {
 
-    if (state.status === 'pending') {
-      // console.log('fetchPostList()', fetchPostList())
+    if (state.status === 'loading') {
       fetchPostList().then(data => {
-        console.log('data1', data)
         setState({ status: 'success', data: data.list })})
         .catch((error) => {
-        console.log('data12', error)
-
           setState({ status: 'error', error })
         })
     }
   }, [state])
 
   useEffect(()  =>  {
-    setState({ status: 'pending'  })
+    setState({ status: 'loading'  })
   }, [])
   const refetch = () => {
-    setState({ status: 'pending' })
+    setState({ status: 'loading' })
   }
 
   return { state, refetch }
+}
+
+
+export function createPost(text: string): Promise<void> {
+  return fetch('/api/posts', {
+    method: 'POST',
+    headers:  {
+      'Content-Type': 'application/json'
+    },
+    body:  JSON.stringify({ text  })
+  })
+  .then(validateResponse)
+  .then(() => undefined)
 }
