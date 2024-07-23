@@ -36,11 +36,9 @@ export const PostForm: FC<IPostFormProps> = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="post-form">
-      <FormField label="Текст поста">
+      <FormField errorMessage={errors.text?.message} label="Текст поста">
         <textarea className="post-form__input" {...register('text')} />
-        {errors.text && <span>{errors.text.message}</span>}
       </FormField>
-      {createPostMutation.error instanceof Error && <span>{createPostMutation.error.message}</span>}
       <Button type="submit" title="Опубликовать" isLoading={createPostMutation.isPending} />
     </form>
   );
