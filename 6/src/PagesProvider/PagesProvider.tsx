@@ -5,7 +5,7 @@ const PagesContext = createContext<IPageProvider | null>(null);
 
 export function PagesProvider({ children }: IPageProviderProps): ReactElement {
 	const [page, setPage] = useState<IPage>({
-		name: "/",
+		name: window.location.pathname,
 	});
 
 	const navigate = (name: string) => {
