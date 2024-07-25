@@ -9,9 +9,9 @@ type TProps = {
 
 export const Button = ({ children, onClick, type = 'primary', disabled }: TProps) => {
     return (
-        <button 
-          disabled={disabled} 
-          className={`Button ${type}`} 
+        <button
+          disabled={disabled}
+          className={`Button ${type}`}
           onClick={onClick}
         >
             {children}
