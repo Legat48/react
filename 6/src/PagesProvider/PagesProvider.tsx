@@ -1,4 +1,4 @@
-import { ReactElement, createContext, useContext, useState } from "react";
+import { ReactElement, createContext, useContext, useState, useEffect } from "react";
 import { IPage, IPageProvider, IPageProviderProps } from "./interfaces";
 
 const PagesContext = createContext<IPageProvider | null>(null);
@@ -6,14 +6,42 @@ const PagesContext = createContext<IPageProvider | null>(null);
 export function PagesProvider({ children }: IPageProviderProps): ReactElement {
 	const [page, setPage] = useState<IPage>({
 		name: window.location.pathname,
+		search: window.location.search
 	});
 
 	const navigate = (name: string) => {
-		setPage({ name });
+		window.history.pushState(null, "", name);
+		setPage({ name, search: '' });
 	};
+  // обработка параметра search по значению поиска в ссылке
+	const setSearchParam = (key: string, value: string) => {
+		const searchParams = new URLSearchParams()
+		searchParams.set(key, value)
+
+		const newPage: IPage = {
+			name: page.name,
+			search: searchParams.toString()
+		}
+
+    window.history.replaceState(null, '', `${newPage.name}?${newPage.search}` )
+    setPage(newPage)
+	}
+
+	useEffect(() => {
+		const handlePopstet = () => {
+			setPage({
+				name: window.location.pathname,
+				search: window.location.search
+			});
+		}
+		window.addEventListener("popstate", handlePopstet);
+		return () => {
+			window.removeEventListener("popstate", handlePopstet);
+		}
+	}, [])
 
 	return (
-		<PagesContext.Provider value={{ ...page, navigate }}>
+		<PagesContext.Provider value={{ ...page, navigate, setSearchParam}}>
 			{children}
 		</PagesContext.Provider>
 	);
