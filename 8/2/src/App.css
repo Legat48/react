@@ -1,0 +1,19 @@
+.app {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1 1 30%;
+  margin: 40px auto 16px;
+  background: #066ace;
+  color: white;
+  border-radius: 16px;
+  max-width: 800px;
+  padding: 16px 16px 60px;
+}

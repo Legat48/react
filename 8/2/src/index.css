@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #202020;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.button {
+  margin: 8px 0 28px 0;
+  height: 32px;
+  width: 160px;
+  cursor: pointer;
+}
+
+/*#app {*/
+/*  padding: 15px;*/
+/*  display: flex;*/
+/*}*/
+
+/*.app {*/
+/*  margin: auto;*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*  flex: 1 1 100%;*/
+/*}*/
+
+/*.blue-wrapper {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  flex-wrap: wrap;*/
+/*  flex: 1 1 30%;*/
+/*  margin: auto;*/
+/*  font-family: Menlo, Monaco;*/
+/*  background: #066ace;*/
+/*  color: white;*/
+/*  border-radius: 5px;*/
+/*  max-width: 700px;*/
+/*  padding: 15px;*/
+/*  margin-bottom: 15px;*/
+
+/*  .input {*/
+/*    flex: 1 0 100%;*/
+/*    margin-bottom: 10px;*/
+/*    border-radius: 3px;*/
+/*    border: none;*/
+/*    font-size: 30px;*/
+/*    font-weight: bold;*/
+/*  }*/
+
+/*  .button {*/
+/*    height: 32px;*/
+/*    width: 160px;*/
+/*    cursor: pointer;*/
+/*  }*/
+
+/*  .rerender {*/
+/*    font-size: 12px;*/
+/*    margin-bottom: 8px;*/
+/*  }*/
+
+/*  .wrapper {*/
+/*    border: 1px solid white;*/
+/*    border-radius: 16px;*/
+/*    padding: 16px;*/
+/*    margin: 16px 0;*/
+/*  }*/
+
+/*  .update {*/
+/*    flex: 1 0 100%;*/
+/*    text-align: center;*/
+/*    margin: 20px auto;*/
+/*    color: yellow;*/
+/*  }*/
+
+/*  .black-tile {*/
+/*    flex: 0 0 40%;*/
+/*    text-align: center;*/
+/*    margin-left: 10px;*/
+/*    margin-bottom: 10px;*/
+/*    margin: auto;*/
+/*    background: #202020;*/
+/*    padding: 15px;*/
+/*    border-radius: 5px;*/
+
+/*    .update {*/
+/*      margin: auto;*/
+/*    }*/
+/*  }*/
+/*}*/
