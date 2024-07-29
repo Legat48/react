@@ -1,17 +1,20 @@
 import { ChangeEvent, useState } from "react";
 import { USERS } from "../../data";
-import { Transit, usePages } from "../../PagesProvider";
 import "./UsersPage.css";
+import { Link, useSearchParams } from "react-router-dom";
 
 export function UsersPage() {
-  const {setSearchParam, search } = usePages()
+  const [searchParams, setSearchParams] =  useSearchParams()
 
 	const handleSearchName = (event: ChangeEvent<HTMLInputElement>): void => {
 		const { value } = event.target;
-		setSearchParam('searchName', value.toLowerCase());
+		setSearchParams({
+      searchName: value.toLowerCase()
+    })
 	};
 
-  const searchName = new URLSearchParams(search).get('searchName') || ''
+  const searchName = new URLSearchParams(searchParams).get('searchName') || ''
+
 	const filteredUsers = USERS.filter(({ fullName }) =>
 		fullName.toLowerCase().includes(searchName)
 	);
@@ -27,9 +30,9 @@ export function UsersPage() {
 				</label>
 
 				{filteredUsers.map(({ id, fullName }) => (
-					<Transit to={`/users/${id}`} key={id}>
+					<Link to={`/users/${id}`} key={id}>
 						{fullName}
-					</Transit>
+					</Link>
 				))}
 			</div>
 		</div>
